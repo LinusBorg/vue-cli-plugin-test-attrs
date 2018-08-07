@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tests renders with test attribue when disabled 1`] = `"with(this){return (toggle)?_c('div',[_c('p',{attrs:{\\"data-test\\":\\"paragraph\\"}},[_v(\\"\\\\n    The Paragraph\\\\n  \\")]),_v(\\" \\"),_c('span',{attrs:{\\"data-test\\":\\"span\\"}},[_v(\\"\\\\n    The Span\\\\n  \\")]),_v(\\" \\"),_c('div',{attrs:{\\"data-e2e\\":\\"div\\"}},[_v(\\"\\\\n    The div\\\\n  \\")])]):_e()}"`;
+
+exports[`Tests renders without test attribute when enabled 1`] = `"with(this){return (toggle)?_c('div',[_c('p',[_v(\\"\\\\n    The Paragraph\\\\n  \\")]),_v(\\" \\"),_c('span',[_v(\\"\\\\n    The Span\\\\n  \\")]),_v(\\" \\"),_c('div',[_v(\\"\\\\n    The div\\\\n  \\")])]):_e()}"`;
