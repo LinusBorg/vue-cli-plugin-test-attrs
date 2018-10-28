@@ -6,7 +6,8 @@
 const generateCompilerModule = require('./lib/')
 
 const defaultOptions = {
-  enabled: process.env.NODE_ENV !== 'test',
+  enabled:
+    process.env.NODE_ENV !== 'test' || !!process.env.VUE_CLI_KEEP_TEST_ATTRS,
   attrs: ['test'],
 }
 
