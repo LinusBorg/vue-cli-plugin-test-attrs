@@ -19,17 +19,6 @@ function generateRender(options) {
 }
 
 describe('Tests', () => {
-  it('renders with test attribue when disabled', () => {
-    const render = generateRender({
-      enabled: false,
-      attrs: ['test', 'e2e'],
-    })
-
-    expect(render).toEqual(expect.stringContaining(`"data-test":"paragraph"`))
-    expect(render).toEqual(expect.stringContaining(`"data-e2e":"div"`))
-    expect(render).toMatchSnapshot()
-  })
-
   it('renders without test attribute when enabled', () => {
     const render = generateRender({
       enabled: true,
