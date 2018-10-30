@@ -9,7 +9,7 @@ module.exports = {
   },
   pluginOptions: {
     testAttrs: {
-      enabled: !!process.env.VUE_CLI_USE_LOCAL_PLUGIN,
+      enabled: !process.env.VUE_CLI_SKIP_TEST_ATTRS,
       attrs: ['test', 'xxx'],
     },
   },
