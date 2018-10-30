@@ -16,19 +16,17 @@ module.exports = (api, projectOptions) => {
 
   if (pluginOptions.enabled === false) return
 
-  const options = { ...defaultOptions, pluginOptions }
-
+  const options = { ...defaultOptions, ...pluginOptions }
   api.chainWebpack(config => {
     const rule = config.module.rule('vue')
 
     rule.use('vue-loader').tap(vueLoaderOptions => {
-      const compiler = vueLoaderOptions.compiler || {}
+      const compiler = vueLoaderOptions.compilerOptions || {}
       const modules = compiler.modules || []
-
       modules.push(generateCompilerModule(options))
 
       compiler.modules = modules
-      vueLoaderOptions.compiler = compiler
+      vueLoaderOptions.compilerOptions = compiler
 
       return vueLoaderOptions
     })

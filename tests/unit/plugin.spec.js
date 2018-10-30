@@ -13,6 +13,23 @@ const mockPkg = json => {
   fs.writeFileSync('/package.json', JSON.stringify(json, null, 2))
 }
 
+const createPkg = (options = {}) => {
+  mockPkg({
+    devDependencies: {
+      'vue-cli-plugin-test-attrs': '^1.0.0',
+    },
+    vue: {
+      pluginOptions: {
+        testAttrs: {
+          enabled: undefined,
+          attrs: ['test'],
+          ...options,
+        },
+      },
+    },
+  })
+}
+
 const moduleMatcher = expect.arrayContaining([
   expect.objectContaining({
     preTransformNode: expect.any(Function),
@@ -27,19 +44,7 @@ describe('When in development mode', () => {
   })
 
   it('adds the module to the vue-loader config by default', () => {
-    mockPkg({
-      devDependencies: {
-        'vue-cli-plugin-test-attrs': '^1.0.0',
-      },
-      vue: {
-        pluginOptions: {
-          testAttrs: {
-            enabled: undefined,
-            attrs: ['test'],
-          },
-        },
-      },
-    })
+    createPkg({ enabled: undefined })
 
     const service = new Service('/')
     service.init()
@@ -51,23 +56,11 @@ describe('When in development mode', () => {
       .use('vue-loader')
       .get('options')
 
-    expect(options.compiler.modules).toEqual(moduleMatcher)
+    expect(options.compilerOptions.modules).toEqual(moduleMatcher)
   })
 
   it("doesn't add the module to vue-loader when manually disabled", () => {
-    mockPkg({
-      devDependencies: {
-        'vue-cli-plugin-test-attrs': '^1.0.0',
-      },
-      vue: {
-        pluginOptions: {
-          testAttrs: {
-            enabled: false,
-            attrs: ['test'],
-          },
-        },
-      },
-    })
+    createPkg({ enabled: false })
 
     const service = new Service('/')
     service.init()
@@ -78,7 +71,7 @@ describe('When in development mode', () => {
       .use('vue-loader')
       .get('options')
 
-    expect(options.compiler).toBeUndefined()
+    expect(options.compilerOptions.modules).toBeUndefined()
   })
 })
 
@@ -89,19 +82,7 @@ describe('When in test mode', () => {
   })
 
   it('adds the module tovue-loader options by default', () => {
-    mockPkg({
-      devDependencies: {
-        'vue-cli-plugin-test-attrs': '^1.0.0',
-      },
-      vue: {
-        pluginOptions: {
-          testAttrs: {
-            enabled: undefined,
-            attrs: ['test'],
-          },
-        },
-      },
-    })
+    createPkg({ enabled: undefined })
 
     const service = new Service('/')
     service.init()
@@ -112,6 +93,6 @@ describe('When in test mode', () => {
       .use('vue-loader')
       .get('options')
 
-    expect(options.compiler.modules).toEqual(moduleMatcher)
+    expect(options.compilerOptions.modules).toEqual(moduleMatcher)
   })
 })
