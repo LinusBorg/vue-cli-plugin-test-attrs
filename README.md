@@ -37,7 +37,7 @@ yarn add -D vue-cli-plugin-test-attrs
 
 ## Usage
 
-by default, this plugin adds the compiler module to vue-loader's config, so the `data-test` attributes will be removed and not Bnd up in the bundle that you serve.
+by default, this plugin adds the compiler module to vue-loader's config, so the `data-test` attributes will be removed and not end up in the bundle that you serve.
 
 It does _not_ add the compiler module (and consequently, it keeps the `data-` attributes) when:
 
@@ -49,7 +49,7 @@ This means:
 1. For `vue-cli-service serve` and `vue-cli-service build` commands, the test attributes will be removed by the compiler module.
 2. For unit tests with `jest` or `mocha` (`vue-cli-service test:unit`), the `data-test` attributes will be present because `NODE_ENV ==== 'test'` (and in the case of jest, vue-loader isn'T used at all anyway)
 
-3. For other environments (e.g. e2e tests), you can use the `VUE_CLI_KEEP_TEST_ATTRS` environment variable to skipt addind the compiler module so `data-test` attributes are persisted.
+3. For other environments (e.g. e2e tests), you can use the `VUE_CLI_KEEP_TEST_ATTRS` environment variable to skip adding the compiler module so `data-test` attributes are persisted.
 
 ## Options
 
