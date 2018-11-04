@@ -17,6 +17,24 @@ In React, this can be solved with a babel plugin, but in Vue, we compile our .vu
 
 This vue-cli-plugin adds such a compiler module to vue-cli's webpack config and exposes a few configuration options in vue.config.js for your convenience.
 
+## Installation
+
+> This library requires @vue/cli >=3
+
+with @vue/cli:
+
+```bash
+vue add test-attrs
+```
+
+or manually:
+
+```bash
+npm install -D vue-cli-plugin-test-attrs
+
+yarn add -D vue-cli-plugin-test-attrs
+```
+
 ## Usage
 
 by default, this plugin adds the compiler module to vue-loader's config, so the `data-test` attributes will be removed and not Bnd up in the bundle that you serve.
@@ -86,3 +104,5 @@ VUE_CLI_KEEP_TEST_ATTRS=true
 > I haven't tested this plugin with nightwatch yet, so if you can contribute instructions, please go ahead and open a PR.
 
 ### Rollup
+
+> to follow.
