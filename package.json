@@ -8,7 +8,7 @@
   ],
   "scripts": {
     "serve:on": "vue-cli-service serve ./example/main.js",
-    "serve:off": "VUE_CLI_SKIP_TEST_ATTRS=true vue-cli-service serve ./example/main.js",
+    "serve:off": "VUE_CLI_KEEP_TEST_ATTRS=true vue-cli-service serve ./example/main.js",
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit",
     "test:unit:w": "vue-cli-service test:unit --watch"

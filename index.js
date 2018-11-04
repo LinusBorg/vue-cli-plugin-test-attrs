@@ -6,15 +6,23 @@
 const generateCompilerModule = require('./lib/')
 
 const defaultOptions = {
-  enabled:
-    process.env.NODE_ENV !== 'test' || !!process.env.VUE_CLI_KEEP_TEST_ATTRS,
+  enabled: undefined,
   attrs: ['test'],
+}
+
+if (process.env.VUE_CLI_KEEP_TEST_ATTRS) {
+  defaultOptions.enabled = false
+}
+
+if (defaultOptions.enabled === undefined && process.env.NODE_ENV === 'test') {
+  defaultOptions.enabled = false
 }
 
 module.exports = (api, projectOptions) => {
   const pluginOptions = projectOptions.pluginOptions.testAttrs || {}
+  const options = { ...defaultOptions, ...pluginOptions }
 
-  if (pluginOptions.enabled === false) return
+  if (options.enabled === false) return
 
   const vueLoaderCacheConfig = api.genCacheConfig('vue-loader', {
     'vue-loader': require('vue-loader/package.json').version,
@@ -26,7 +34,6 @@ module.exports = (api, projectOptions) => {
     testAttrs: 'true',
   })
 
-  const options = { ...defaultOptions, ...pluginOptions }
   api.chainWebpack(config => {
     const rule = config.module.rule('vue')
 

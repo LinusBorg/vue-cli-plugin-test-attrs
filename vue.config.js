@@ -9,7 +9,7 @@ module.exports = {
   },
   pluginOptions: {
     testAttrs: {
-      enabled: !process.env.VUE_CLI_SKIP_TEST_ATTRS,
+      enabled: undefined, // false,
       attrs: ['test', 'xxx'],
     },
   },
