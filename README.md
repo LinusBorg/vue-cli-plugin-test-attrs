@@ -60,7 +60,7 @@ the plugin's options can be configured in `vue.config.js`:
 module.exports = {
   pluginOptions: {
     testAttrs: {
-      // you can enable and disabvle it yourself,
+      // you can enable and disable it yourself,
       // i.e. with an environment variable:
       enabled: process.env.MY_COOL_ENV,
       // you can also define which `data-` attributes should
