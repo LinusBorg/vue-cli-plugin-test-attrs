@@ -1,7 +1,14 @@
 {
   "name": "vue-cli-plugin-test-attrs",
   "version": "0.1.0",
-  "private": true,
+  "author": {
+    "name": "Thorsten Lünborg",
+    "url": "https://github.com/linusborg"
+  },
+  "repository": {
+    "url": "https://github.com/linusborg/vue-cli-plugin-test-attrs"
+  },
+  "private": false,
   "main": "index.js",
   "files": [
     "/lib"
