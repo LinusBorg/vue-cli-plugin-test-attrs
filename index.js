@@ -5,19 +5,23 @@
 
 const generateCompilerModule = require('./lib/')
 
-const defaultOptions = {
-  enabled: undefined,
-  attrs: ['test'],
+const genDefOpts = () => {
+  let enabled
+  if (process.env.VUE_CLI_KEEP_TEST_ATTRS) {
+    enabled = false
+  }
+
+  if (enabled === undefined && process.env.NODE_ENV === 'test') {
+    enabled = false
+  }
+  return {
+    enabled,
+    attrs: ['test'],
+  }
 }
 
 module.exports = (api, projectOptions) => {
-  if (process.env.VUE_CLI_KEEP_TEST_ATTRS) {
-    defaultOptions.enabled = false
-  }
-
-  if (defaultOptions.enabled === undefined && process.env.NODE_ENV === 'test') {
-    defaultOptions.enabled = false
-  }
+  const defaultOptions = genDefOpts()
 
   const pluginOptions = projectOptions.pluginOptions.testAttrs || {}
   const options = { ...defaultOptions, ...pluginOptions }
