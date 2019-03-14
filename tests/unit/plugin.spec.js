@@ -81,13 +81,29 @@ describe('When in test mode', () => {
     process.env.NODE_ENV = 'test'
   })
 
-  it('adds the module tovue-loader options by default', () => {
+  it('doesnt add the module to vue-loader options by default', () => {
     createPkg({ enabled: undefined })
 
     const service = new Service('/')
     service.init()
 
     const config = service.resolveChainableWebpackConfig()
+    const options = config.module
+      .rule('vue')
+      .use('vue-loader')
+      .get('options')
+
+    expect(options.compilerOptions.modules).toBeUndefined()
+  })
+
+  it('adds the module to the vue-loader when explicitly enabled', () => {
+    createPkg({ enabled: true })
+
+    const service = new Service('/')
+    service.init()
+
+    const config = service.resolveChainableWebpackConfig()
+
     const options = config.module
       .rule('vue')
       .use('vue-loader')
