@@ -31,7 +31,7 @@ module.exports = (api, projectOptions) => {
       .version,
     'vue-template-compiler': require('vue-template-compiler/package.json')
       .version,
-    testAttrs: 'true',
+    testAttrsOptions: JSON.stringify(options),
   })
 
   api.chainWebpack(config => {
