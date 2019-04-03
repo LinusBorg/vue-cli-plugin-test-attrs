@@ -8,7 +8,11 @@ const generateCompilerModule = require('./lib/')
 module.exports = (api, projectOptions) => {
   const defaultOptions = genDefOpts()
 
-  const pluginOptions = projectOptions.pluginOptions.testAttrs || {}
+  const pluginOptions =
+    (projectOptions &&
+      projectOptions.pluginOptions &&
+      projectOptions.pluginOptions.testAttrs) ||
+    {}
   const options = { ...defaultOptions, ...pluginOptions }
 
   if (options.enabled === false) return
