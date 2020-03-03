@@ -28,7 +28,13 @@ describe('Tests', () => {
     expect(render).toEqual(
       expect.not.stringContaining(`"data-test":"paragraph"`)
     )
+    console.log(render)
+
     expect(render).toEqual(expect.not.stringContaining(`"data-e2e":"div"`))
+    expect(render).toEqual(expect.not.stringContaining(`"data-test":div-bound`))
+    expect(render).toEqual(
+      expect.not.stringContaining(`"data-test":div-bound-shorthand`)
+    )
     expect(render).toMatchSnapshot()
   })
 })
